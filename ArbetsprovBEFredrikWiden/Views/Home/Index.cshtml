@@ -1,0 +1,44 @@
+﻿@model IEnumerable<ArbetsprovBEFredrikWiden.Models.Person>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>List of Persons in DB</h2>
+<p>@Html.ActionLink("Create New", "Create")</p>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(m => m.FirstName)</th>
+            <th>@Html.DisplayNameFor(m => m.LastName)</th>
+            <th>@Html.DisplayNameFor(m => m.EmailAdress)</th>
+            <th>@Html.DisplayNameFor(m => m.PhoneNumber)</th>
+            <th>@Html.DisplayNameFor(m => m.CompanyID)</th>
+            <th>Edit</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var person in Model)
+        {
+            //Nisse row goes red
+
+            var cssClass = person.FirstName.Trim() == "Nisse" ? "alert-danger" : ""; 
+
+            <tr class="@cssClass">
+
+                <td>@person.FirstName</td>
+                <td>@person.LastName</td>
+                <td>@person.EmailAdress</td>
+                <td>@person.PhoneNumber</td>
+                <td>@person.CompanyID</td>
+
+                <td>@Html.ActionLink("Edit", "Edit", new { id = person.id })</td>
+
+            </tr>
+
+        }
+    </tbody>
+</table>
+
